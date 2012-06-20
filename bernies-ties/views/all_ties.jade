@@ -8,5 +8,8 @@ div#link
 
 ul
 each tie in ties
-	li #{tie.attributes.name}  Rating: #{tie.attributes.average}
+	- if(tie.attributes.average == null)
+		li #{tie.attributes.name}  Rating: No votes yet
+	- else
+		li #{tie.attributes.name}  Rating: #{tie.attributes.average}
 	<img src="#{tie.attributes.url}" width="300"/>
