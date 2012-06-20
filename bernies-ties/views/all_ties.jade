@@ -6,7 +6,9 @@ div#link
 div#link
 	a(href="") Random Tie
 
+#{ties}
+
 ul
-	li Engineer / MBA / Consultant with more than 10 years experience
-	li Instructor for the SFU Summer in Innovation, representing the Beedie School of Buisness
-	li World reknowned Tie enthusiast
+each tie in ties
+	li #{tie.attributes.name}  Rating: #{tie.attributes.average}
+	<img src="#{tie.attributes.url}" width="300"/>
