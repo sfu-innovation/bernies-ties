@@ -22,7 +22,7 @@ div#wrap
 				<img class="tie_img" src="#{tie.attributes.url}" / >
 
 				span.rating
-					form(method="get", action="all_ties", name="rate")
+					form(method="post", action="all_ties", name="rate")
 						input(type="hidden", name="id", value="#{tie.attributes.name}")
 
 						span.vote
