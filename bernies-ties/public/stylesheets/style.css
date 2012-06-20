@@ -5,7 +5,7 @@
 
 body {
 	background-color: #EDEEEF;
-	font: Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -62,11 +62,30 @@ a#btn_all_ties:hover {
 
 img.tie_img{  border: 10px white solid; 	box-shadow:         0px 2px 4px 0px #ccc;  width: 100px; }
 
-span.name, span.rating {
+span.name, span.rating span.vote {
 	    display: block;
 
 }
 
-ol {margin-top: 30px; text-align: center; list-style: none}
+ol {margin-top: 30px; list-style: none; margin-left: 0}
 
-ol li{margin-bottom: 10px; }
+ol li{margin: 0px;
+	padding: 20px;
+	display: inline;
+	float: left;
+	width: 120px; 
+	height: 250px;
+	}
+	
+ol li span {
+	font-size: small;
+}
+
+form {
+	font-size: small;
+}
+
+input {
+	border: 0px;
+	font-size: .7em;
+}
