@@ -1,7 +1,7 @@
 var fs = require('fs');
 eval(fs.readFileSync('../config.js', encoding='ascii'));
 var should  = require('should');
-var Accounts = require('../../models/account');
+var Accounts = require('../../models/tie');
 var server = require('../server.js');
 var http = require('http');
 var express = require('express');
