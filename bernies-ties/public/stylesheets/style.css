@@ -81,6 +81,7 @@ img.tie_img{
 	border: 10px white solid; 	
 	box-shadow: 0px 2px 4px 0px #ccc;  
 	width: 100px; 
+	height: 100px;
 }
 
 span.name, span.rating span.vote {
@@ -113,4 +114,9 @@ form {
 input {
 	border: 0px;
 	font-size: .7em;
+}
+
+input:hover{
+	background-color: white;
+	
 }
