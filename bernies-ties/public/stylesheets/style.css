@@ -16,7 +16,7 @@ div#portrait {
 	position: absolute;
 	right: 0;
 	bottom: 0;
-
+	z-index: -1;
 }
 
 #wrap {
@@ -30,7 +30,6 @@ div#portrait {
 	text-align: center;
 	background-color: #37404c;
 	color: white;
-
 }
 
 li {
@@ -52,30 +51,37 @@ a#btn_all_ties {
 	padding-top: 10px;
 	font-size: 20px;
 	text-decoration: none;
-	box-shadow:         0px 2px 4px 0px #ccc;
+	box-shadow: 0px 2px 4px 0px #ccc;
 }
 
 a#btn_all_ties:hover {
-
-	box-shadow:         0px 1px 2px 0px #ccc;
+	box-shadow: 0px 1px 2px 0px #ccc;
 }
 
-img.tie_img{  border: 10px white solid; 	box-shadow:         0px 2px 4px 0px #ccc;  width: 100px; }
+img.tie_img{  
+	border: 10px white solid; 	
+	box-shadow: 0px 2px 4px 0px #ccc;  
+	width: 100px; 
+}
 
 span.name, span.rating span.vote {
 	    display: block;
-
 }
 
-ol {margin-top: 30px; list-style: none; margin-left: 0}
+ol {
+	margin-top: 30px; 
+	list-style: none; 
+	margin-left: 0
+}
 
-ol li{margin: 0px;
+ol li{
+	margin: 0px;
 	padding: 20px;
 	display: inline;
 	float: left;
 	width: 120px; 
 	height: 250px;
-	}
+}
 	
 ol li span {
 	font-size: small;
