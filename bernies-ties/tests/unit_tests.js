@@ -17,9 +17,9 @@ module.exports = {
     },
     'tie vote': function( test ) {
     	var tie = new Tie.Tie({ name: "Winning"});
-    	tie.vote( 1 );
-    	tie.vote( 2 );
-    	tie.vote( 3 );
+    	tie.vote( 1, 1 );
+    	tie.vote( 1, 2 );
+    	tie.vote( 2, 3 );
     	test.ok( 3 == tie.get("ratings").length, "Adding the ratings to the tie doesnt seem to work");
     	delete tie;
     	test.done();
@@ -27,17 +27,29 @@ module.exports = {
     
     'tie no average': function( test ) {
     	var tie = new Tie.Tie({});
-    	test.ok(undefined == tie.average(), "NaN occured since / 0");
+    	test.ok( undefined == tie.average(), "NaN occured since / 0" );
     	delete tie;
     	test.done();
     },
     
-    'tie average' : function(test){
+    'tie average' : function( test ){
     	var tie = new Tie.Tie({ name: "Winning"});
-    	tie.vote( 2 );
-    	tie.vote( 3 );
+    	tie.vote( 1, 2 );
+    	tie.vote( 2, 3 );
     	test.ok( 2.5 == tie.average(), "There is a problem with dividing");
     	delete tie;
     	test.done();
+    },
+    
+    'tie duplicate votes ' : function( test ){
+    	var tie = new Tie.Tie();
+    	tie.vote( 1, 2 );
+    	tie.vote( 3, 5 );
+    	tie.vote( 3, 8 );
+    	
+        test.ok( 5 == tie.average(), "There was an issue in handling revotes");
+        delete(tie);
+    	test.done();
+    
     }
 }

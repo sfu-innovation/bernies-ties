@@ -5,20 +5,36 @@ exports.Tie = Backbone.Model.extend({
 	defaults:{
 		name     :"default",
 		imageurl:"test",
-		ratings  :[],
+		ratings  :[]
 		
 	},
 	initialize:function(){
 		var ratings_array = new Array();
 		this.set({ ratings : ratings_array });
 	},
-	
-	// do we want users to be able to change their ratings?
-	vote:function( rating ){
-	    var ratings_array = this.get("ratings");
-	    ratings_array.push( rating );
-	    this.set({ ratings: ratings_array });
+
+	alreadyVoted:function( userVal, ratingsVal ){
+		
+		return false;
 	},
+	
+	vote:function( userVal, ratingsVal ){
+		if ( ratingsVal < 1 || ratingsVal > 10 ) {
+			return ratingsVal;
+		}
+		
+		var ratings_array = this.get("ratings");
+		var length = ratings_array.length;
+		for ( var i; i < length ; i++){
+			if ( ratings_array[i].user == userVal ){
+				ratings_array[i].rating = ratingsVal;
+				return true;
+			}
+		}
+	    ratings_array.push( { user : userVal, rating : ratingsVal } );
+	    this.set( { ratings : ratings_array } );
+	},
+
 	
 	average:function(){
 		var ratings_array = this.get("ratings");
@@ -28,7 +44,7 @@ exports.Tie = Backbone.Model.extend({
 			return;
 		}
 		for ( var i = 0; i < length; i++){
-			ratingsum += parseInt(ratings_array[i]);
+			ratingsum += parseInt(ratings_array[i].rating);
 		}
 		return ratingsum /  ratings_array.length;
 	}
