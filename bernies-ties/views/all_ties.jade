@@ -1,9 +1,15 @@
 div#header
-	h1= title
+	h1
+		span#logo
+			img(src="images/logo.png")
+		= title
+		span#logo
+			img(src="images/logo.png")
 
+div#all_ties_info
+	p This is the list of all Bernie's awesome ties sorted by rating
+	
 div#wrap
-
-	p This is the list of all Bernies awesome ties sorted by rating
 	test()
 
 	div.link
@@ -13,26 +19,32 @@ div#wrap
 	ol
 		each tie in ties
 			li
+				<img class="tie_img" src="#{tie.attributes.url}" / >
+
+				span.rating
+					form(method="get", action="all_ties", name="rate")
+						input(type="hidden", name="id", value="#{tie.attributes.name}")
+
+						span.vote
+						- if(tie.average())						
+							- for(var i=1; i<=10; i++)
+								input(type="submit", name="vote", value=i, disabled="disabled")
+						- else
+							- for(var i=1; i<=10; i++)
+								input(type="submit", name="vote", value=i)
+
 				- if(tie.average() === null)
-					<img class="tie_img" src="#{tie.attributes.url}" / >
+					
 					span.name
 						#{tie.attributes.name}
 					span.rating  Rating: No votes yet
 
 				- else
 
-					<img class="tie_img" src="#{tie.attributes.url}" / >
 					span.name
 						#{tie.attributes.name}
 					span.Rating Rating: #{tie.average()}
-				span.rating
-					form(method="post", action="all_ties", name="rate")
-						input(type="hidden", name="id", value="#{tie.attributes.name}")
-						|Rate: 
-						span.vote
-						- for(var i=1; i<=10; i++)
-							input(type="submit", name="vote", value=i)
-					
+									
 				
 
 

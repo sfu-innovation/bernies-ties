@@ -15,30 +15,61 @@ a {
 div#portrait {
 	position: absolute;
 	right: 0;
-	bottom: 0;
-
+	bottom: auto;
+	margin-top: -50px;
+	z-index: -1;
 }
 
 #wrap {
 	padding-top: 60px;
-	width: 980px;
 	margin: 0 auto;
 }
 
 #header {
-	padding: 20px;
+	padding: 10px;
 	text-align: center;
 	background-color: #37404c;
 	color: white;
+}
 
+#footer {
+	position:absolute;
+	top: 620px;
+	padding:0px;
+	width: 100%;
+	height: 94px;
+	text-align: center;
+	color: white;
+	
+	background-image:url('/images/footer_gradient.png');
+	background-repeat:repeat-x;
 }
 
 li {
-	margin-left: 80px
+	margin-left: 15px
 }
 
 p, a, h2 {
-	margin: 20px 0px;
+	margin: 10px 0px;
+}
+
+div#info {
+	background-color: rgba(175,105,140,0.5);
+	width: 50%;
+	margin: 25px 15px;
+	padding: 5px 15px 15px 15px;
+	font-size: 15px;
+	text-decoration: none;
+	box-shadow: 0px 2px 4px 0px #ccc;
+}
+
+div#all_ties_info {
+	background-color: rgba(175,105,140,0.5);
+	margin: 15px 15px -25px 15px;
+	padding: 5px 15px 15px 15px;
+	font-size: 15px;
+	text-decoration: none;
+	box-shadow: 0px 2px 4px 0px #ccc;
 }
 
 a#btn_all_ties {
@@ -52,30 +83,38 @@ a#btn_all_ties {
 	padding-top: 10px;
 	font-size: 20px;
 	text-decoration: none;
-	box-shadow:         0px 2px 4px 0px #ccc;
+	box-shadow: 0px 2px 4px 0px #ccc;
 }
 
 a#btn_all_ties:hover {
-
-	box-shadow:         0px 1px 2px 0px #ccc;
+	box-shadow: 0px 1px 2px 0px #ccc;
 }
 
-img.tie_img{  border: 10px white solid; 	box-shadow:         0px 2px 4px 0px #ccc;  width: 100px; }
+img.tie_img{  
+	border: 10px white solid; 	
+	box-shadow: 0px 2px 4px 0px #ccc;  
+	width: 100px; 
+	height: 100px;
+}
 
 span.name, span.rating span.vote {
 	    display: block;
-
 }
 
-ol {margin-top: 30px; list-style: none; margin-left: 0}
+ol {
+	margin-top: 30px; 
+	list-style: none; 
+	margin-left: 0
+}
 
-ol li{margin: 0px;
+ol li{
+	margin: 0px;
 	padding: 20px;
 	display: inline;
 	float: left;
 	width: 120px; 
 	height: 250px;
-	}
+}
 	
 ol li span {
 	font-size: small;
@@ -88,4 +127,8 @@ form {
 input {
 	border: 0px;
 	font-size: .7em;
+}
+
+input:hover{
+	background-color: white;
 }
