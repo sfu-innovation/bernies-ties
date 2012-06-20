@@ -138,3 +138,18 @@ input {
 input:hover{
 	background-color: white;
 }
+
+span.norating{
+	line-height: 30px;
+	vertical-align: text-bottom;
+}
+span.showrating{
+	font-size: x-large;
+	font-weight: bold;
+	line-height: 30px;
+	
+}
+
+span.showrating:hover{
+	color: #AE6A8F;
+}
