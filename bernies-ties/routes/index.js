@@ -23,8 +23,8 @@ exports.allTies = function(req, res){
 	
 	
 	ties.sort(function(a,b) { 
-		console.log("a = " + a.attributes.name);
-		console.log("b = " + b.attributes.name);
+		//console.log("a = " + a.attributes.name);
+		//console.log("b = " + b.attributes.name);
 
 		var first_element = a.average();
 		var second_element = b.average();
