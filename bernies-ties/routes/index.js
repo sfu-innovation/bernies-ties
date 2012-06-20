@@ -1,4 +1,4 @@
-var ties = require('../ties.js').ties;
+var ties = require('../controllers/all_ties.js').ties;
 /*
  * GET home page.
  */
