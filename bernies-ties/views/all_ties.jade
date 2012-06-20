@@ -1,15 +1,28 @@
-h1= title
-p This is the list of all Bernies awesome ties sorted by rating
+div#header
+	h1= title
 
-div#link
-	a(href="/") Home
-div#link
-	a(href="") Random Tie
+div#wrap
+	p This is the list of all Bernies awesome ties sorted by rating
 
-ul
-each tie in ties
-	- if(tie.attributes.average == null)
-		li #{tie.attributes.name}  Rating: No votes yet
-	- else
-		li #{tie.attributes.name}  Rating: #{tie.attributes.average}
-	<img src="#{tie.attributes.url}" width="300"/>
+	div.link
+		a#btn_all_ties(href="/") Back to Home
+
+
+	ol
+		each tie in ties
+			- if(tie.attributes.average == null)
+				li
+					<img class="tie_img" src="#{tie.attributes.url}" / >
+					span.name
+						#{tie.attributes.name}
+					span.rating  Rating: No votes yet
+
+			- else
+				li
+					<img class="tie_img" src="#{tie.attributes.url}" / >
+					span.name
+						#{tie.attributes.name}
+					span.rating
+						Rating: #{tie.attributes.average}
+
+
