@@ -4,17 +4,20 @@ var ties = require('../controllers/all_ties.js').ties;
  */
 
 exports.index = function(req, res){
+	res.cookie('rememberme', 'yes', { expires: new Date(Date.now() + 900000), httpOnly: true, secure: true });
 	res.render('index', { title: 'Bernies Ties' })
 };
 
 exports.allTies = function(req, res){
 	console.log(ties);
-	var tie_id = req.query['id'],
-		vote = req.query['vote'];
+	var tie_id = req.body.id,
+		vote = req.body.vote;
+
+	var cookie = req.session.cookie;
 
 	for(i in ties) {
 		if (ties[i].attributes.name === tie_id){
-			ties[i].vote(1, vote);
+			ties[i].vote(cookie, vote);
 			break;
 		}
 	}

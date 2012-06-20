@@ -49,6 +49,6 @@ exports.Tie = Backbone.Model.extend({
 			ratingsum += parseInt(ratings_array[i].rating);
 		}
 
-		return ratingsum /  ratings_array.length;
+		return (ratingsum /  ratings_array.length).toFixed(2);
 	}
 });

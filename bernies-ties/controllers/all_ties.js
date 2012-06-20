@@ -24,8 +24,4 @@ TieList.getList(function(list){
     }
 })
 
-var getVote = function(vote) {
-	console.log(vote);
-}
-
 exports.ties = ties;

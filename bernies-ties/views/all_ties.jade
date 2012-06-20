@@ -26,7 +26,7 @@ div#wrap
 						#{tie.attributes.name}
 					span.Rating Rating: #{tie.average()}
 				span.rating
-					form(method="get", action="all_ties", name="rate")
+					form(method="post", action="all_ties", name="rate")
 						input(type="hidden", name="id", value="#{tie.attributes.name}")
 						|Rate: 
 						span.vote

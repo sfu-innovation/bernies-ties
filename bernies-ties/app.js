@@ -14,6 +14,12 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.use(express.cookieParser());
+  app.use(express.session({
+    secret: 'test',
+    cookie: { secure: true }            
+}));
+
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
@@ -31,6 +37,7 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+app.post('/all_ties', routes.allTies);
 app.get('/all_ties', routes.allTies);
 
 exports.server = app;
