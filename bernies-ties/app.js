@@ -4,8 +4,9 @@
  */
 
 var express = require('express')
-  , routes = require('./routes');
-
+, routes = require('./routes')
+, fs = require('fs');
+var config = JSON.parse(fs.readFileSync('package.json'));
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -32,6 +33,6 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.get('/all_ties', routes.allTies);
 
-app.listen(3000, function(){
+app.listen(config.port, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
