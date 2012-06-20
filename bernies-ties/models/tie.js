@@ -22,16 +22,17 @@ exports.Tie = Backbone.Model.extend({
 		if ( ratingsVal < 1 || ratingsVal > 10 ) {
 			return ratingsVal;
 		}
-		
 		var ratings_array = this.get("ratings");
 		var length = ratings_array.length;
-		for ( var i; i < length ; i++){
+		for ( var i = 0; i < length ; i++){
 			if ( ratings_array[i].user == userVal ){
 				ratings_array[i].rating = ratingsVal;
+				this.set( { ratings : ratings_array } );
+			
 				return true;
 			}
 		}
-	    ratings_array.push( { user : userVal, rating : ratingsVal } );
+	    ratings_array.push( { user : userVal, rating: ratingsVal } );
 	    this.set( { ratings : ratings_array } );
 	},
 

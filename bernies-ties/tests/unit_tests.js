@@ -20,7 +20,7 @@ module.exports = {
     	tie.vote( 1, 1 );
     	tie.vote( 1, 2 );
     	tie.vote( 2, 3 );
-    	test.ok( 3 == tie.get("ratings").length, "Adding the ratings to the tie doesnt seem to work");
+    	test.ok( 2 == tie.get("ratings").length, "Adding the ratings to the tie doesnt seem to work");
     	delete tie;
     	test.done();
     },
@@ -45,9 +45,9 @@ module.exports = {
     	var tie = new Tie.Tie();
     	tie.vote( 1, 2 );
     	tie.vote( 3, 5 );
-    	tie.vote( 3, 8 );
+    	tie.vote( 3, 7 );
     	
-        test.ok( 5 == tie.average(), "There was an issue in handling revotes");
+        test.ok( 4.5 == tie.average(), "There was an issue in handling revotes");
         delete(tie);
     	test.done();
     
