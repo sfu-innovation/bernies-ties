@@ -33,6 +33,8 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.get('/all_ties', routes.allTies);
 
-app.listen(config.port, function(){
+exports.server = app;
+
+app.listen(process.env.DEPLOY_PORT || config.port, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
