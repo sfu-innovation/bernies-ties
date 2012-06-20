@@ -21,7 +21,13 @@ div#wrap
 			li
 				<img class="tie_img" src="#{tie.attributes.url}" / >
 
-				span.rating
+
+				- if(tie.average() === null)
+					
+					span.norating  No votes yet
+					
+					span.rating
+
 					form(method="post", action="all_ties", name="rate")
 						input(type="hidden", name="id", value="#{tie.attributes.name}")
 
@@ -32,19 +38,28 @@ div#wrap
 						- else
 							- for(var i=1; i<=10; i++)
 								input(type="submit", name="vote", value=i)
-
-				- if(tie.average() === null)
-					
 					span.name
 						#{tie.attributes.name}
-					span.rating  Rating: No votes yet
 
 				- else
 
+					
+					span.showrating #{tie.average()}
+					
+					span.rating
+					form(method="post", action="all_ties", name="rate")
+						input(type="hidden", name="id", value="#{tie.attributes.name}")
+
+						span.vote
+						- if(tie.average())						
+							- for(var i=1; i<=10; i++)
+								input(type="submit", name="vote", value=i, disabled="disabled")
+						- else
+							- for(var i=1; i<=10; i++)
+								input(type="submit", name="vote", value=i)
+									
 					span.name
 						#{tie.attributes.name}
-					span.Rating Rating: #{tie.average()}
-									
 				
 
 
