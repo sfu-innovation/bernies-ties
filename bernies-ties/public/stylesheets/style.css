@@ -12,6 +12,12 @@ a {
 	color: #00B7FF;
 }
 
+span#logo {
+	float: center;
+	margin-right:10px;
+	margin-left:10px;
+}
+
 div#portrait {
 	position: absolute;
 	right: 0;
