@@ -1,7 +1,7 @@
 div#header
 	h1= title
 
-div#infowide
+div#all_ties_info
 	p This is the list of all Bernies awesome ties sorted by rating
 	
 div#wrap
@@ -14,26 +14,28 @@ div#wrap
 	ol
 		each tie in ties
 			li
+				<img class="tie_img" src="#{tie.attributes.url}" / >
+
+				span.rating
+					form(method="get", action="all_ties", name="rate")
+						input(type="hidden", name="id", value="#{tie.attributes.name}")
+
+						span.vote
+						- for(var i=1; i<=10; i++)
+							input(type="submit", name="vote", value=i)
+
 				- if(tie.average() === null)
-					<img class="tie_img" src="#{tie.attributes.url}" / >
+					
 					span.name
 						#{tie.attributes.name}
 					span.rating  Rating: No votes yet
 
 				- else
 
-					<img class="tie_img" src="#{tie.attributes.url}" / >
 					span.name
 						#{tie.attributes.name}
 					span.Rating Rating: #{tie.average()}
-				span.rating
-					form(method="get", action="all_ties", name="rate")
-						input(type="hidden", name="id", value="#{tie.attributes.name}")
-						|Rate: 
-						span.vote
-						- for(var i=1; i<=10; i++)
-							input(type="submit", name="vote", value=i)
-					
+									
 				
 
 
