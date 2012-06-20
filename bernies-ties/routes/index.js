@@ -5,7 +5,7 @@ var ties = require('../controllers/all_ties.js').ties;
  */
 
 exports.index = function(req, res){
-	res.render('index', { title: 'Bernies Ties' })
+	res.render('index', { title: 'Bernie\'s Ties' })
 };
 
 exports.allTies = function(req, res){
@@ -41,5 +41,5 @@ exports.allTies = function(req, res){
 	});
 
 
-	res.render('all_ties', { title: 'All Bernies Ties', ties: ties });
+	res.render('all_ties', { title: 'All Bernie\'s Ties', ties: ties });
 };
