@@ -5,8 +5,10 @@ var ties = require('../controllers/all_ties.js').ties;
  */
 
 exports.index = function(req, res){
+
 	res.cookie('rememberme', 'yes', { expires: new Date(Date.now() + 900000), httpOnly: true, secure: true });
 	res.render('index', { title: 'Bernies Ties' })
+
 };
 
 exports.allTies = function(req, res){
@@ -47,5 +49,5 @@ exports.allTies = function(req, res){
 	});
 
 
-	res.render('all_ties', { title: 'All Bernies Ties', ties: ties });
+	res.render('all_ties', { title: 'All Bernie\'s Ties', ties: ties });
 };
