@@ -3,6 +3,7 @@ div#header
 
 div#wrap
 	p This is the list of all Bernies awesome ties sorted by rating
+	test()
 
 	div.link
 		a#btn_all_ties(href="/") Back to Home
@@ -10,7 +11,7 @@ div#wrap
 
 	ol
 		each tie in ties
-			- if(tie.attributes.average == null)
+			- if(tie.average() === null)
 				li
 					<img class="tie_img" src="#{tie.attributes.url}" / >
 					span.name
@@ -22,7 +23,16 @@ div#wrap
 					<img class="tie_img" src="#{tie.attributes.url}" / >
 					span.name
 						#{tie.attributes.name}
-					span.rating
-						Rating: #{tie.attributes.average}
+					span.Rating Rating: #{tie.average()}
+
+
+			form(method="get", action="all_ties")
+				input(type="hidden", name="id", value="#{tie.attributes.name}")
+				|Rate:
+				- for(var i=1; i<=10; i++)
+					input(type="submit", name="vote", value=i)
+					
+				
+
 
 

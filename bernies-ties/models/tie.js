@@ -34,6 +34,7 @@ exports.Tie = Backbone.Model.extend({
 		}
 	    ratings_array.push( { user : userVal, rating: ratingsVal } );
 	    this.set( { ratings : ratings_array } );
+
 	},
 
 	
@@ -42,11 +43,12 @@ exports.Tie = Backbone.Model.extend({
 		var ratingsum = 0;
 		var length = ratings_array.length;
 		if ( length == 0 ){
-			return;
+			return null;
 		}
 		for ( var i = 0; i < length; i++){
 			ratingsum += parseInt(ratings_array[i].rating);
 		}
+
 		return ratingsum /  ratings_array.length;
 	}
 });
