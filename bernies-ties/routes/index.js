@@ -1,5 +1,4 @@
 var ties = require('../controllers/all_ties.js').ties;
-var sorted_ties = require('../controllers/sort_ties.js').sorted_ties;
 
 /*
  * GET home page.
