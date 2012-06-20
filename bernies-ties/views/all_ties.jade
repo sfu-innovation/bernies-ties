@@ -32,12 +32,8 @@ div#wrap
 						input(type="hidden", name="id", value="#{tie.attributes.name}")
 
 						span.vote
-						- if(tie.average())						
-							- for(var i=1; i<=10; i++)
-								input(type="submit", name="vote", value=i, disabled="disabled")
-						- else
-							- for(var i=1; i<=10; i++)
-								input(type="submit", name="vote", value=i)
+						- for(var i=1; i<=10; i++)
+							input(type="submit", name="vote", value=i)
 					span.name
 						#{tie.attributes.name}
 
@@ -51,12 +47,8 @@ div#wrap
 						input(type="hidden", name="id", value="#{tie.attributes.name}")
 
 						span.vote
-						- if(tie.average())						
-							- for(var i=1; i<=10; i++)
-								input(type="submit", name="vote", value=i, disabled="disabled")
-						- else
-							- for(var i=1; i<=10; i++)
-								input(type="submit", name="vote", value=i)
+						- for(var i=1; i<=10; i++)
+							input(type="submit", name="vote", value=i)
 									
 					span.name
 						#{tie.attributes.name}
