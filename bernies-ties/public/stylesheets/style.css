@@ -1,8 +1,22 @@
 body {
-  padding: 50px;
+  background-color:#EDEEEF;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+div#portrait{
+	position: absolute;
+	right:0;
+	bottom: 0;
+
+}
+
+
+#wrap{
+
+	width:980px;
+	margin: 0 auto;
 }
