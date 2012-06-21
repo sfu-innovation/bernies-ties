@@ -39,6 +39,8 @@ app.get('/', routes.index);
 app.post('/all_ties', routes.allTies);
 app.get('/all_ties', routes.allTies);
 app.get('/upload_tie', routes.uploadTie);
+//app.post('/upload_tie', routes.uploadTie);
+app.post('/upload_suc', routes.uploadSuc);
 
 exports.server = app;
 

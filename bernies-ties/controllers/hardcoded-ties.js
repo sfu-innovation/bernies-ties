@@ -12,14 +12,14 @@ var ties = [];
 
 var i;
 for(i = 0; i < data.length; i++){
-	var newTie = new Tie.Tie({name:data[i].name, url:data[i].url});
+	var newTie = new Tie.Tie({name:data[i].name, imageurl:data[i].url});
 	ties.push(newTie);
 }
 
 TieList.getList(function(list){
     var i;
     for(i = 0; i < list.length; i++){
-        var newTie = new Tie.Tie({name:list[i].name, url:list[i].url});
+        var newTie = new Tie.Tie({name:list[i].name, imageurl:list[i].url});
         ties.push(newTie);
     }
 })
