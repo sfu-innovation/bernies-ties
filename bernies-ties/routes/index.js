@@ -1,4 +1,11 @@
-var ties = require('../controllers/all_ties.js').ties;
+var 
+	fs = require('fs'),
+	ties = require('../controllers/all_ties.js').ties;
+var config = JSON.parse(fs.readFileSync('package.json'));
+var client = require('redis').createClient(config.database.port, config.database.host);
+var Tie = require('../models/tie.js');
+
+client.select(config.database["db-num"], function(){});
 
 /*
  * GET home page.
@@ -55,5 +62,40 @@ exports.allTies = function(req, res){
 };
 
 exports.uploadTie = function(req, res) {
+	console.log("in upload");
 	res.render('upload_tie', {title: 'Upload Tie' });
+	}
+
+	
+exports.uploadSuc = function(req, res){
+	console.log("upload received");
+	
+	var tie_name = req.body.name;
+	var tie_picture = req.files.upload.path
+	console.log(req.body.name);
+			
+	console.log("parsing done");
+	var filepath = ("./public/images/" + req.files.upload.name)
+    var tiefilepath = ("./images/" + req.files.upload.name)
+    fs.rename(req.files.upload.path, filepath , function(err) {
+       if (err) {
+       	   console.log("Error uploading file: "+err)
+       	   console.log("Move "+req.files.upload.path+" to "+filepath)
+	       fs.unlink(filepath);
+	       fs.rename(req.files.upload.path, filepath);
+	       return
+	   }
+	   console.log("YAY DONE");
+	   var newTie = new Tie.Tie({name:tie_name, imageurl:tiefilepath});
+	   client.set(newTie.get("name"),JSON.stringify(newTie), function(){
+	   	console.log("Tie created")
+	   });
+
+
+	});
+	 
+	res.render('upload_suc', {title: 'Tie Uploaded' });
+   	
+
+	
 }

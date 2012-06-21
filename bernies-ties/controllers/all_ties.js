@@ -6,11 +6,25 @@ var ties = [];
 var keys = [];
 var randomTie = [];
 
-client.select(config.database["db-num"], function(){});
+client.select(config.database["db-num"], function(err,result){
+	if (err){
+
+		console.log(err);
+		return;
+	}
+
+});
 
 client.keys("*", function(err, result){
+	if (err){
+		console.log(err);
+		return;
+
+
+	}
+
 	keys = result;
-	
+
 	var i;
 	for(i = 0; i < keys.length; i++){
 		client.get(keys[i], function(err, a){
@@ -23,7 +37,18 @@ client.keys("*", function(err, result){
 	//This chooses a random tie, but onle once per server start
 	//Still don't know how to stop client on time, so I'll leave this in
 	client.randomkey(function(err,key){
+		if (err){
+			console.log(err);
+			return;
+
+		}
 		client.get(key, function(err, a){
+			if (err){
+				console.log(err);
+				return;
+
+			}
+
 			var json = eval('(' + a + ')');
 			randomTie.push(new Tie.Tie(json));
 		});

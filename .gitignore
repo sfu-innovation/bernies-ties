@@ -182,3 +182,5 @@ npm-debug.log
 
 # Yukai's editor meta data
 .idea/
+
+bernies-ties/dump.rdb

@@ -50,7 +50,6 @@ div#portrait {
 	height: 94px;
 	text-align: center;
 	color: white;
-	
 	background-image:url('/images/footer_gradient.png');
 	background-repeat:repeat-x;
 }
@@ -64,14 +63,12 @@ p, a, h2 {
 }
 
 div#info {
-	background-color: rgba(175,105,140,0.5);
 	width: 50%;
 	margin: 25px 15px;
 	padding: 5px 15px 15px 15px;
 	font-size: 15px;
 	text-decoration: none;
-	box-shadow: 0px 2px 4px 0px #ccc;
-}
+	}
 
 div#all_ties_info {
 	background-color: rgba(175,105,140,0.5);
@@ -157,3 +154,12 @@ span.showrating{
 span.showrating:hover{
 	color: #AE6A8F;
 }
+
+div#randomvote{
+	margin: 25px;
+	width: 120px; 
+	height: 250px;
+}
+
+
+
