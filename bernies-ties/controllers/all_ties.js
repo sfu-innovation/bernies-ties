@@ -26,5 +26,4 @@ client.keys("*", function(err, result){
 });
 
 
-
 exports.ties = ties;

@@ -12,6 +12,12 @@ a {
 	color: #00B7FF;
 }
 
+span#logo {
+	float: center;
+	margin-right:10px;
+	margin-left:10px;
+}
+
 div#portrait {
 	position: absolute;
 	right: 0;
@@ -37,10 +43,12 @@ div#portrait {
 	top: 620px;
 	padding:0px;
 	width: 100%;
-	height: 100px;
+	height: 94px;
 	text-align: center;
-	background-color: #37404c;
 	color: white;
+	
+	background-image:url('/images/footer_gradient.png');
+	background-repeat:repeat-x;
 }
 
 li {
@@ -129,5 +137,19 @@ input {
 
 input:hover{
 	background-color: white;
+}
+
+span.norating{
+	line-height: 30px;
+	vertical-align: text-bottom;
+}
+span.showrating{
+	font-size: x-large;
+	font-weight: bold;
+	line-height: 30px;
 	
+}
+
+span.showrating:hover{
+	color: #AE6A8F;
 }

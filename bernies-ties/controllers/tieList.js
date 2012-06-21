@@ -4,34 +4,40 @@ var
 
 var TieList = function(){
     this.host = 'www.thetiegallery.com';
-    this.path = '/Category.aspx?cat=2';
-    this.list = [];
+    this.path = '/GetProducts.ashx?subid=0&catid=2&color=&filters=&search=&page=';
 };
 
 TieList.prototype.getList = function(callback){
     var self = this;
-    var request = http.request({
-            host: self.host,
-            port: 80,
-            path: self.path,
-            method: "GET"
-        }, function(response) {
 
+    var options = {
+        host: self.host,
+        port: 80,
+        path: self.path,
+        method: "GET"
+    }
+
+    var i;
+    for(i = 1; i < 5; i++){
+        options.path = self.path + i;
+
+        request = http.request(options,function(response) {
             DOM.parse(response, function(doc) {
+
+                var list = [];
+
                 doc.querySelectorAll(".ProdItem").forEach(function(i) {
 
-                    self.list.push({
-                        "name" : i.querySelector("h4 a").textContent,
+                    list.push({
+                        "name" : i.querySelector("h4").textContent,
                         "url" : "http://" + self.host + "/" + i.querySelector("a img").getAttribute("src")
                     });
                 });
-
-                callback(self.list);
+                callback(list);
             });
-        });
-    request.end();
+        }).end();
+    }
 
-    return self.list;
 }
 
 module.exports = new TieList;
