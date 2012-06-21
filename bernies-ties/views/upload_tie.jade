@@ -8,7 +8,15 @@ div#header
 			
 div#all_ties_info
 	p Upload an image of a tie to add it to the site
+
 	
+div#wrap
+	<form action="/upload_suc" enctype="multipart/form-data" method="post">
+	<input type="text" name="name">
+	<input type="file" name="upload" multiple="multiple">
+	<input type="submit" value="Upload file" />
+	</form>
+		
 div#wrap
 	div.link
 		a#btn_all_ties(href="/all_ties") Return to List
