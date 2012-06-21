@@ -39,6 +39,7 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.post('/all_ties', routes.allTies);
 app.get('/all_ties', routes.allTies);
+app.get('/upload_tie', routes.uploadTie);
 
 exports.server = app;
 

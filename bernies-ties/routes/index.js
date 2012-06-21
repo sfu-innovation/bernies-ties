@@ -51,3 +51,7 @@ exports.allTies = function(req, res){
 
 	res.render('all_ties', { title: 'All Bernie\'s Ties', ties: ties });
 };
+
+exports.uploadTie = function(req, res) {
+	res.render('upload_tie', {title: 'Upload Tie' });
+}
