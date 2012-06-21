@@ -17,7 +17,6 @@ for(i = 0; i < data.length; i++){
 
 
 TieList.getList(function(list){
-
 	var i;
 
 	for(i = 0; i < list.length; i++){
