@@ -4,7 +4,15 @@ var client = require('redis').createClient(config.database.port, config.database
 var Tie = require('./models/tie.js');
 var ties = require('./controllers/hardcoded-ties.js').ties;
 
-client.select(config.database["db-num"], function(){});
+client.select(config.database["db-num"], function(err, result){
+
+	if (err){
+		console.log(err);
+		return;
+
+	}
+
+});
 
 
 console.log("Ties list is " + ties.length);
@@ -15,8 +23,11 @@ for(i = 0; i < ties.length; i++){
 
 	var tie = ties[i];
 
-	client.set(ties[i].get("name"), JSON.stringify(tie), function(){
-
+	client.set(ties[i].get("name"), JSON.stringify(tie), function(err, result){
+		if (err){
+			console.log(err);
+			return;
+		}
 		//Close after last insert
 		//Not working for some reason
 		if(i == (ties.length - 1)){
@@ -24,8 +35,14 @@ for(i = 0; i < ties.length; i++){
 			client.end();
 		}
 	});
-	
+
 	client.info(function(err, info){
+		if (err){
+			console.log(err);
+			return;
+
+		}
+
 		console.log("ERROR " + info);
 	});
 }
