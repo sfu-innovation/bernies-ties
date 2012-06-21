@@ -32,6 +32,6 @@ ties.on("ready", function(ties){
 	client.save();
 	console.log("Records saved: " + ties.length);
 
-	client.end();
+	client.end(); 
 })
 
