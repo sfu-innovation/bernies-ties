@@ -51,6 +51,7 @@ exports.allTies = function(req, res){
 				first_element = 0;
 			}
 
+
 			if (!second_element) {
 				second_element = 0;
 			}
@@ -60,6 +61,7 @@ exports.allTies = function(req, res){
 
 
 		res.render('all_ties', { title: 'All Bernie\'s Ties', ties: ties });
+
 
 	});
 };
