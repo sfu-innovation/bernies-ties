@@ -4,8 +4,7 @@ var
 
 var TieList = function(){
     this.host = 'www.thetiegallery.com';
-    this.path = '/GetProducts.ashx?subid=0&catid=2&color=&filters=&search=&page=';//'/Category.aspx?cat=2';
-    this.list = [];
+    this.path = '/GetProducts.ashx?subid=0&catid=2&color=&filters=&search=&page=';
 };
 
 TieList.prototype.getList = function(callback){
@@ -24,14 +23,17 @@ TieList.prototype.getList = function(callback){
 
         request = http.request(options,function(response) {
             DOM.parse(response, function(doc) {
+
+                var list = [];
+
                 doc.querySelectorAll(".ProdItem").forEach(function(i) {
 
-                    self.list.push({
+                    list.push({
                         "name" : i.querySelector("h4").textContent,
                         "url" : "http://" + self.host + "/" + i.querySelector("a img").getAttribute("src")
                     });
                 });
-                callback(self.list);
+                callback(list);
             });
         }).end();
     }
@@ -39,4 +41,3 @@ TieList.prototype.getList = function(callback){
 }
 
 module.exports = new TieList;
-//GetProducts.ashx?subid=0&catid=2&color=&filters=&search=neckwear&page=2
