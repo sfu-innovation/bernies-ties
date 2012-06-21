@@ -4,6 +4,7 @@ var client = require('redis').createClient(config.database.port, config.database
 var Tie = require('../models/tie.js');
 var ties = [];
 var keys = [];
+var randomTie = [];
 
 client.select(config.database["db-num"], function(){});
 
@@ -19,11 +20,18 @@ client.keys("*", function(err, result){
 		});
 	}
 
-	//Not sure how to properly stop the client	
-	client.get(keys[0], function(err, a){
-		client.end();
+	//This chooses a random tie, but onle once per server start
+	//Still don't know how to stop client on time, so I'll leave this in
+	client.randomkey(function(err,key){
+		client.get(key, function(err, a){
+			var json = eval('(' + a + ')');
+			randomTie.push(new Tie.Tie(json));
+		});
+
 	});
+
 });
 
 
 exports.ties = ties;
+exports.randomTie = randomTie;

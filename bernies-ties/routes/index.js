@@ -6,8 +6,10 @@ var ties = require('../controllers/all_ties.js').ties;
 
 exports.index = function(req, res){
 
+	var randomTie = ties[Math.floor(Math.random() * ties.length)]; 
+
 	res.cookie('rememberme', 'yes', { expires: new Date(Date.now() + 900000), httpOnly: true, secure: true });
-	res.render('index', { title: 'Bernies Ties' })
+	res.render('index', { title: 'Bernies Ties' , tie:randomTie})
 
 };
 

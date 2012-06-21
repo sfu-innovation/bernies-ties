@@ -18,7 +18,7 @@
 	"database":{
 		"host":"localhost",
 		"port":6379,
-		"db-num":"8"
+		"db-num":"4"
 	}
 }
 

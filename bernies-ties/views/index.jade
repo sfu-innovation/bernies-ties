@@ -22,6 +22,42 @@ div#info
 		li Engineer / MBA / Consultant with more than 10 years experience
 		li Instructor for the SFU Summer in Innovation, representing the Beedie School of Buisness
 		li World reknowned Tie enthusiast
-		
+
+
+<img class="tie_img" src="#{tie.attributes.url}" / >
+
+- if(tie.average() === null)
+	
+	span.norating  No votes yet
+	
+	span.rating
+
+	form(method="post", action="all_ties", name="rate")
+		input(type="hidden", name="id", value="#{tie.attributes.name}")
+
+		span.vote
+
+
+		- for(var i=1; i<=10; i++)
+			input(type="submit", name="vote", value=i)
+
+	span.name
+		#{tie.attributes.name}
+				
+- else
+	
+	span.showrating #{tie.average()}
+	
+	span.rating
+	form(method="post", action="all_ties", name="rate")
+		input(type="hidden", name="id", value="#{tie.attributes.name}")
+
+		span.vote
+		- for(var i=1; i<=10; i++)
+			input(type="submit", name="vote", value=i)
+
+	span.name
+		#{tie.attributes.name}
+
 div#footer
-	p Semester in Innovation - 2012
+p Semester in Innovation - 2012

@@ -16,19 +16,16 @@ for(i = 0; i < ties.length; i++){
 	var tie = ties[i];
 
 	client.set(ties[i].get("name"), JSON.stringify(tie), function(){
-		//console.log(ties[i].get("name") + " set.");
+
+		//Close after last insert
+		//Not working for some reason
+		if(i == (ties.length - 1)){
+			console.log("CLOSE");
+			client.end();
+		}
 	});
 	
 	client.info(function(err, info){
 		console.log("ERROR " + info);
 	});
 }
-
-
-
-//Not sure how to properly end client on time
-//So I'll just leave this here
-client.get(ties[0].get("name"), function(err, a){
-	client.end();
-});
-
