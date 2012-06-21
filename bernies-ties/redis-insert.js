@@ -2,30 +2,31 @@ var fs = require('fs');
 var config = JSON.parse(fs.readFileSync('package.json'));
 var client = require('redis').createClient(config.database.port, config.database.host);
 var Tie = require('./models/tie.js');
-var ties = require('./controllers/hardcoded-ties.js').ties;
+var ties = require('./controllers/hardcoded-ties.js');
 
 client.select(config.database["db-num"], function(){});
 
+client.on('error', function(err){
+	console.log("Error: " + err);
+})
 
-console.log("Ties list is " + ties.length);
+ties.on("ready", function(ties){
 
-var i;
-for(i = 0; i < ties.length; i++){
-	console.log(i);
+	var i;
+	for(i = 0; i < ties.length; i++){
+		var tie = ties[i];
 
-	var tie = ties[i];
+		client.set(ties[i].get("name"), JSON.stringify(tie), function(){
+			console.log("item inserted");
+		});
+	}
 
-	client.set(ties[i].get("name"), JSON.stringify(tie), function(){
+	client.save();
+	console.log("Records saved: " + ties.length);
 
-		//Close after last insert
-		//Not working for some reason
-		if(i == (ties.length - 1)){
-			console.log("CLOSE");
-			client.end();
-		}
-	});
-	
-	client.info(function(err, info){
-		console.log("ERROR " + info);
-	});
-}
+	client.end();
+})
+
+
+
+
