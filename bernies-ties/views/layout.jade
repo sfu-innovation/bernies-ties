@@ -2,6 +2,8 @@
 html
 	head
 		title= title
-		link(rel='stylesheet', href='/stylesheets/style.css')
+		<link rel='stylesheet' media='' href='css/medium.css' />
+		link(rel='stylesheet', media='screen and (min-width: 500px)', href='/stylesheets/style.css')
+		link(rel='stylesheet', media='screen and (max-width: 500px)', href='/stylesheets/small.css')
 		link(rel='apple-touch-icon-precomposed', href='images/icon.png')
 	body!=body
