@@ -13,6 +13,7 @@ div#wrap
 div#info
 	p Welcome to #{title}. A Site where you have a opportunity to vote on the many Ties of Bernie Maroney.
 
+div#info
 	h2 About Bernie
 	ul
 		li Engineer / MBA / Consultant with more than 10 years experience
@@ -23,12 +24,12 @@ div#info
 div.link
 	a#btn_all_ties(href="/all_ties") Visit Tie List
 
-
 div#randomvote
-	<img class="tie_img" src="#{tie.attributes.url}" / >
+	div#randomimage
+		img(class='tie_img', src='#{tie.attributes.url}')
 	
 	- if(tie.average() === null)
-		
+	
 		span.norating  No votes yet
 		
 		span.rating
