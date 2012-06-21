@@ -6,13 +6,19 @@
 		"express": "2.5.10"
 		,"jade": ">= 0.0.1"
 		,"backbone" :">= 0.0.0"
-        ,"com.izaakschroeder.dom": ">=0.0.2"
+        	,"com.izaakschroeder.dom": ">=0.0.2"
+		,"redis":">=0.0.1"
 	}
 	, "devDependencies": {
 		"nodeunit": ">=0.0.0"
 		, "should": ">= 0.0.0"
 	},
 	"port":3000,
-	"host":"localhost"
+	"host":"localhost",
+	"database":{
+		"host":"localhost",
+		"port":6379,
+		"db-num":"8"
+	}
 }
 

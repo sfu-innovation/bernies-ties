@@ -1,27 +1,29 @@
-var Tie = require('./../models/tie.js');
-var TieList = require('./tieList');
-
-
-
-var data = [{"name":"Blue Steel", "url":"images/tie_1.jpg"},
-			{"name":"Flying Hawaiian", "url":"images/tie_2.jpg"},
-			{"name":"Red Barron", "url":"images/tie_3.jpg"},
-			{"name":"Stripey", "url":"images/tie_4.jpg"}];
-
+var fs = require('fs');
+var config = JSON.parse(fs.readFileSync('package.json'));
+var client = require('redis').createClient(config.database.port, config.database.host);
+var Tie = require('../models/tie.js');
 var ties = [];
+var keys = [];
 
-var i;
-for(i = 0; i < data.length; i++){
-	var newTie = new Tie.Tie({name:data[i].name, url:data[i].url});
-	ties.push(newTie);
-}
+client.select(config.database["db-num"], function(){});
 
-TieList.getList(function(list){
-    var i;
-    for(i = 0; i < list.length; i++){
-        var newTie = new Tie.Tie({name:list[i].name, url:list[i].url});
-        ties.push(newTie);
-    }
-})
+client.keys("*", function(err, result){
+	keys = result;
+	
+	var i;
+	for(i = 0; i < keys.length; i++){
+		client.get(keys[i], function(err, a){
+			var json = eval('(' + a + ')');
+			var tie = new Tie.Tie(json);
+			ties.push(tie);
+		});
+	}
+
+	//Not sure how to properly stop the client	
+	client.get(keys[0], function(err, a){
+		client.end();
+	});
+});
+
 
 exports.ties = ties;
