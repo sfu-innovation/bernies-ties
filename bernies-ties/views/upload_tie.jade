@@ -11,7 +11,24 @@ div#all_ties_info
 
 	
 div#wrap
-	<form action="/upload_suc" enctype="multipart/form-data" method="post">
+	script (type='text/javascript')
+		function validateForm()
+		{
+		var x=document.forms["uploadform"]["name"].value;
+		var y=document.forms["uploadform"]["upload"].value;
+		if (x==null || x=="")
+			{
+			alert("Tie name must be filled out");
+			return false;
+			}
+		if (y==null || y=="")
+			{
+			alert("Please select a picture to upload");
+			return false;
+			}
+		
+		}
+	<form name="uploadform" action="/upload_suc" enctype="multipart/form-data" method="post" onsubmit="return validateForm()">
 	<input type="text" name="name">
 	<input type="file" name="upload" multiple="multiple">
 	<input type="submit" value="Upload file" />
