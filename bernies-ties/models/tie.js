@@ -15,8 +15,13 @@ exports.Tie = Backbone.Model.extend({
 	},
 	
 	vote: function(rating){
-		if (typeof rating !== "number")
-			throw new TypeError("Rating must be a number!");
+		if ( isNaN(rating) ){
+			console.log("Rating must be a number");
+			//throw new TypeError("Rating must be a number!");
+			//need error handling to use throw new TypeError
+			return;
+		}
+
 		this.set("ratings", this.get("ratings").concat(rating))
 
 	},
