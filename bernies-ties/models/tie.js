@@ -15,17 +15,28 @@ exports.Tie = Backbone.Model.extend({
 	},
 	
 	vote: function(rating){
-		if (typeof rating !== "number")
-			throw new TypeError("Rating must be a number!");
-		this.set("ratings", this.get("ratings").concat(rating))
-
+		if (isNaN(rating)){
+			console.log("Rating must be a number!");
+		}
+		else{
+			this.set("ratings", this.get("ratings").concat(rating))
+		}
 	},
 
 	
 	average:function(){
 		var ratings = this.get("ratings");
-		return ratings.length > 0 ? ratings.reduce(function(a, b) {
-			return a+b;
-		}) / ratings.length : null;
+		if(ratings.length > 0){
+			
+			var result = ratings.reduce(function(a, b) {
+				return a+b;
+				}) / ratings.length;
+
+			return result.toFixed(2);
+
+		}
+		else{
+			return null;
+		}
 	}
 });
