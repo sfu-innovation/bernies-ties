@@ -1,10 +1,10 @@
 div#header
 	h1
 		span#logo
-			img(src="images/logo.png")
+			img(src="/images/logo.png")
 		= title
 		span#logo
-			img(src="images/logo.png")
+			img(src="/images/logo.png")
 
 div#wrap
 	form#search
@@ -38,10 +38,9 @@ div#wrap
 						input(type="hidden", name="id", value="#{tie.attributes.name}")
 
 						span.vote
-
-
-						- for(var i=1; i<=10; i++)
-							input(type="submit", name="vote", value=i)
+							- for(var i=1; i<=5; i++)
+								input(name="vote", type="radio", class="star", value=i)
+							input(type="submit", name="vote-submit", value="Vote")
 					span.name
 						#{tie.attributes.name}
 
@@ -55,8 +54,9 @@ div#wrap
 						input(type="hidden", name="id", value="#{tie.attributes.name}")
 
 						span.vote
-						- for(var i=1; i<=10; i++)
-							input(type="submit", name="vote", value=i)
+							- for(var i=1; i<=5; i++)
+								input(name="vote", type="radio", class="star", value=i)
+							input(type="submit", name="vote-submit", value="Vote")
 				
 					span.name
 						#{tie.attributes.name}
