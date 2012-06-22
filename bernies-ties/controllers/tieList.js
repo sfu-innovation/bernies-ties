@@ -19,7 +19,7 @@ TieList.prototype.getList = function(callback){
 		method: "GET"
 	}
 
-	var i, list = [], remaining = 4;
+	var i, list = {}, remaining = 4;
 	for(i = 1; i < 5; i++){
 		options.path = self.path + i;
 
@@ -28,11 +28,11 @@ TieList.prototype.getList = function(callback){
 			DOM.parse(response, function(doc) {
 				doc.querySelectorAll(".ProdItem").forEach(function(i) {
 
-					list.push(new Tie.Tie({
+					var tie = new Tie.Tie({
 							"name" : i.querySelector("h4").textContent,
 							"imageurl" : "http://" + self.host + "/" + i.querySelector("a img").getAttribute("src")
-						})
-					);
+						});
+                    list[tie.get("name")] = tie;
 				});
 			});
 
