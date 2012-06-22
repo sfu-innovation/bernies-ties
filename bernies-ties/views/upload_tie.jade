@@ -37,11 +37,25 @@ div#wrap
 	
 		
 		}
+<<<<<<< HEAD
 	<form name="uploadform" action="/upload_success" enctype="multipart/form-data" method="post" onsubmit="return validateForm()">
 	<input type="text" name="name">
 	<input type="file" name="upload" multiple="multiple">
 	<input type="submit" value="Upload file" />
 	</form>
+=======
+	div#upload_form
+		p
+			<form name="uploadform" action="/upload_suc" enctype="multipart/form-data" method="post" onsubmit="return validateForm()">
+		p
+			span Tie Name: 
+				<input id="textfield" type="text" name="name">
+		p
+			<input type="file" name="upload" multiple="multiple">
+		p
+			<input id="submit" type="submit" value="Upload file" />
+		</form>
+>>>>>>> master
 		
 div#wrap
 	div.link

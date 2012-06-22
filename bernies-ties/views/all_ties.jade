@@ -1,18 +1,19 @@
 div#header
 	h1
 		span#logo
-			img(src="images/logo.png")
+			img(src="/images/logo.png")
 		= title
 		span#logo
-			img(src="images/logo.png")
+			img(src="/images/logo.png")
 
 div#wrap
-	form#search
-		input(type="text", placeholder="Enter a tie name")#search_box
-		button#search_btn Search
+	
 
 	div#all_ties_info
 		p This is the list of all Bernie's awesome ties sorted by rating
+		form#search
+			input(type="text", placeholder="Enter a tie name")#textfield
+			button#search_btn Search
 
 	test()
 
@@ -38,10 +39,9 @@ div#wrap
 						input(type="hidden", name="id", value="#{tie.attributes.name}")
 
 						span.vote
-
-
-						- for(var i=1; i<=10; i++)
-							input(type="submit", name="vote", value=i)
+							- for(var i=1; i<=5; i++)
+								input(name="vote", type="radio", class="star", value=i)
+							input(id="submitvote", type="submit", name="vote-submit", value="Vote")
 					span.name
 						#{tie.attributes.name}
 
@@ -55,8 +55,10 @@ div#wrap
 						input(type="hidden", name="id", value="#{tie.attributes.name}")
 
 						span.vote
-						- for(var i=1; i<=10; i++)
-							input(type="submit", name="vote", value=i)
+							div
+							- for(var i=1; i<=5; i++)
+								input(name="vote", type="radio", class="star required {split:4}", value=i)
+							input(id="submitvote", type="submit", name="vote-submit", value="Vote")
 				
 					span.name
 						#{tie.attributes.name}

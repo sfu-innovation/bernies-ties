@@ -8,47 +8,43 @@ exports.Tie = Backbone.Model.extend({
 		ratings  :[]
 		
 	},
-	initialize:function(){
-		var ratings_array = new Array();
-		this.set({ ratings : ratings_array });
-	},
 
 	alreadyVoted:function( userVal, ratingsVal ){
 		
 		return false;
 	},
 	
-	vote:function( userVal, ratingsVal ){
-		if ( ratingsVal < 1 || ratingsVal > 10 ) {
-			return ratingsVal;
+	vote: function(rating){
+		if ( isNaN(rating) ){
+			console.log("Rating must be a number");
+			//throw new TypeError("Rating must be a number!");
+			//need error handling to use throw new TypeError
+			return;
 		}
-		var ratings_array = this.get("ratings");
-		var length = ratings_array.length;
-		for ( var i = 0; i < length ; i++){
-			if ( ratings_array[i].user == userVal ){
-				ratings_array[i].rating = ratingsVal;
-				this.set( { ratings : ratings_array } );
-			
-				return true;
-			}
+		else if(rating < 1 || rating >5){
+			console.log("Rating must be between 1 - 5");
+			//throw new TypeError("Rating must be a number!");
+			//need error handling to use throw new TypeError
+			return;
 		}
-	    ratings_array.push( { user : userVal, rating: ratingsVal } );
-	    this.set( { ratings : ratings_array } );
+
+		this.set("ratings", this.get("ratings").concat(rating))
 
 	},
-
 	
 	average:function(){
-		var ratings_array = this.get("ratings");
-		var ratingsum = 0;
-		var length = ratings_array.length;
-		if ( length == 0 ){
+		var ratings = this.get("ratings");
+		if(ratings.length > 0){
+			
+			var result = ratings.reduce(function(a, b) {
+				return a+b;
+				}) / ratings.length;
+
+			return result.toFixed(2);
+
+		}
+		else{
 			return null;
 		}
-		for ( var i = 0; i < length; i++){
-			ratingsum += parseInt(ratings_array[i].rating);
-		}
-
-		return (ratingsum /  ratings_array.length).toFixed(2);
 	}
 });
