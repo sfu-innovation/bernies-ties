@@ -90,41 +90,32 @@ exports.searchTies = function(req, res){
 
 		//TODO: large block code copied from above, I suggest move these into controller as private method. Router is not a place to do serious programing.
 
-		var tie_id = req.body.id,
-			vote = req.body.vote;
+		var out = function(){
+			var test = Object.getOwnPropertyNames(ties).map(function(name){
+				return ties[name];
+			});
+			test.sort(function(a,b) {
+				//console.log("a = " + a.attributes.name);
+				//console.log("b = " + b.attributes.name);
 
-		var cookie = req.session.cookie;
+				var first_element = a.average();
+				var second_element = b.average();
 
+				if (!first_element) {
+					first_element = 0;
+				}
 
-		for(i in ties) {
-			if (ties[i].attributes.name === tie_id){
-				ties[i].vote(cookie, vote);
-				break;
-			}
+				if (!second_element) {
+					second_element = 0;
+				}
+
+				return parseFloat(second_element) - parseFloat(first_element)
+			});
+
+			res.render('all_ties', { title: 'All Bernie\'s Ties', ties: test });
 		}
 
-		//console.log(ties);
-
-
-		ties.sort(function(a,b) {
-			//console.log("a = " + a.attributes.name);
-			//console.log("b = " + b.attributes.name);
-
-			var first_element = a.average();
-			var second_element = b.average();
-
-			if (!first_element) {
-				first_element = 0;
-			}
-
-			if (!second_element) {
-				second_element = 0;
-			}
-
-			return parseFloat(second_element) - parseFloat(first_element)
-		});
-
-		res.render('all_ties', { title: 'Search Results' , ties:ties})
+		out();
 
 	});
 
