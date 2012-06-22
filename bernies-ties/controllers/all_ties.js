@@ -14,6 +14,7 @@ client.select(config.database["db-num"], function(err,result){
 
 });
 
+
 // Trying to reuse the getTies code here
 
 exports.getTies = function(callback){
