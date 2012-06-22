@@ -55,8 +55,9 @@ div#wrap
 						input(type="hidden", name="id", value="#{tie.attributes.name}")
 
 						span.vote
+							div
 							- for(var i=1; i<=5; i++)
-								input(name="vote", type="radio", class="star", value=i)
+								input(name="vote", type="radio", class="star required {split:4}", value=i)
 							input(id="submitvote", type="submit", name="vote-submit", value="Vote")
 				
 					span.name

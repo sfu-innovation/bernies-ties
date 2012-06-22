@@ -4,4 +4,12 @@ $(document).ready(function(){
 		window.location.href = '/search/'+ keyword;
 		return false;
 	});
+
+
+
+	$('.star').rating({
+
+	});
+
+
 });
