@@ -5,7 +5,7 @@
 var express = require('express')
 , routes = require('./routes')
 , fs = require('fs');
-var config = JSON.parse(fs.readFileSync('package.json'));
+var config = JSON.parse(fs.readFileSync('config.json'));
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -45,6 +45,6 @@ app.post('/upload_suc', routes.uploadSuc);
 
 exports.server = app;
 
-app.listen(process.env.DEPLOY_PORT || config.port, function(){
+app.listen(process.env.DEPLOY_PORT || config.server.port, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
