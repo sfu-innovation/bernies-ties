@@ -1,6 +1,5 @@
 var 
 	fs = require('fs'),
-	//ties = require('../controllers/all_ties.js').ties;
 	tieList = require('../controllers/all_ties.js');
 var config = JSON.parse(fs.readFileSync('config.json'));
 var client = require('redis').createClient(config.database.port, config.database.host);
@@ -31,11 +30,8 @@ exports.allTies = function(req, res){
 
 		var out = function(){
 			var test = Object.getOwnPropertyNames(ties).map(function(name){
-
 				return ties[name];
 			});
-			console.log(Object.getOwnPropertyNames(test));
-		//	test.pop();
 			test.sort(function(a,b) { 
 				//console.log("a = " + a.attributes.name);
 				//console.log("b = " + b.attributes.name);
@@ -56,17 +52,18 @@ exports.allTies = function(req, res){
 
 			res.render('all_ties', { title: 'All Bernie\'s Ties', ties: test });
 		}
-\
+
 		if (req.method === 'POST') {
 			var tie_id = req.body.id,
 				vote = req.body.vote,
 				cookie = req.session.cookie;
 
-			console.log(tie_id);
-			console.log(Object.getOwnPropertyNames(ties));
+			console.log("Voting on tie "+tie_id)
 
-			ties[tie_id].vote(cookie,vote);
+			ties[tie_id].vote(parseInt(vote));
 			client.set(ties[tie_id].get("name"), JSON.stringify(ties[tie_id]), function(err){
+				console.log("Saving "+ties[tie_id].get("name"));
+				console.log(JSON.stringify(ties[tie_id]))
 				out();
 			})
 		}
@@ -74,26 +71,6 @@ exports.allTies = function(req, res){
 			out();
 		}
 
-/*
-		for(i in ties) {
-			if (ties[i].attributes.name === tie_id){
-				console.log(ties[i].attributes.ratings);
-				ties[i].vote(cookie, vote);
-				console.log(ties[i].attributes.ratings);
-
-				console.log("!!");
-			//	console.log("got vote for tie"+ ties[i].attributes.ratings)
-				client.set(ties[i].get("name"), JSON.stringify(ties[i]), function(err){
-
-				});
-				console.log("!!!!!");
-				client.get(ties[i], function (err, result) {
-					console.log(eval(result));
-				});
-				break;
-			}
-		}*/
-	
 		
 
 	});

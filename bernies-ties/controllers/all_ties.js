@@ -49,11 +49,9 @@ var getTies = function(keyword,callback){
 	//Notice: in a real projects, the KEY command should never be used to do search, see http://redis.io/commands/keys for details
 
 	client.keys(key, function(err, result){
-		var keys = [];
+		var keys = result;
 		var i;
-		var remaining;
-		keys = result;
-		remaining = keys.length;
+		var remaining = keys.length;
 
 		if (err){
 			console.log(err);
@@ -99,7 +97,7 @@ exports.getRandomTie = function(callback){
 				return;
 
 			}
-			var json = eval('(' + a + ')');
+			var json = JSON.parse(a);
 			callback(new Tie.Tie(json));
 		});
 
