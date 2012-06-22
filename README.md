@@ -34,6 +34,7 @@ The port number can be subject to change
 * app.js - the "main hub" of Express
 * package.json - manages dependencies
 * models - backbone stuff
+* controllers - handle user actions
 
 
 

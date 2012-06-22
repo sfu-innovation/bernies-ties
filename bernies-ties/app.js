@@ -5,7 +5,7 @@
 var express = require('express')
 , routes = require('./routes')
 , fs = require('fs');
-var config = JSON.parse(fs.readFileSync('package.json'));
+var config = JSON.parse(fs.readFileSync('config.json'));
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -38,12 +38,16 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.post('/all_ties', routes.allTies);
 app.get('/all_ties', routes.allTies);
+
+app.get('/search/', routes.searchTies); // no params
+app.get('/search/:k', routes.searchTies); // with keyword params k
+
 app.get('/upload_tie', routes.uploadTie);
 //app.post('/upload_tie', routes.uploadTie);
 app.post('/upload_suc', routes.uploadSuc);
 
 exports.server = app;
 
-app.listen(process.env.DEPLOY_PORT || config.port, function(){
+app.listen(process.env.DEPLOY_PORT || config.server.port, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

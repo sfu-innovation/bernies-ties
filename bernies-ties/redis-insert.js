@@ -1,5 +1,5 @@
 var fs = require('fs');
-var config = JSON.parse(fs.readFileSync('package.json'));
+var config = JSON.parse(fs.readFileSync('config.json'));
 var client = require('redis').createClient(config.database.port, config.database.host);
 var Tie = require('./models/tie.js');
 var ties = require('./controllers/hardcoded-ties.js');
