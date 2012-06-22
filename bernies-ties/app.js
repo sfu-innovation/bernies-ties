@@ -38,7 +38,10 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.post('/all_ties', routes.allTies);
 app.get('/all_ties', routes.allTies);
-app.get('/search', routes.searchTies);
+
+app.get('/search/', routes.searchTies); // no params
+app.get('/search/:k', routes.searchTies); // with keyword params k
+
 app.get('/upload_tie', routes.uploadTie);
 //app.post('/upload_tie', routes.uploadTie);
 app.post('/upload_suc', routes.uploadSuc);

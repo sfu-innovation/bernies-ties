@@ -66,8 +66,15 @@ exports.allTies = function(req, res){
 
 
 exports.searchTies = function(req, res){
+	//http://localhost:3000/search/red
+	var keyword;
+	if (!req.params.k){
+		keyword = "";
+	}
+	else {keyword = req.params.k}
+	tieList.searchTies(req.params.k,function(ties){
 
-	tieList.searchTies("red",function(ties){
+
 
 		//TODO: large block code copied from above, I suggest move these into controller as private method. Router is not a place to do serious programing.
 
