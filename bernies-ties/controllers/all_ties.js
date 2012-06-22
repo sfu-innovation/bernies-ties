@@ -58,6 +58,10 @@ var getTies = function(keyword,callback){
 			return;
 		}
 
+		if (!keys.length){
+			//if no result in database, return empty array for now
+			callback(ties);
+		}
 
 		for(i = 0; i < keys.length; i++){
 			client.get(keys[i], function(err, a){
@@ -67,6 +71,7 @@ var getTies = function(keyword,callback){
 
 				if(--remaining === 0){
 					callback(ties);
+
 				}
 			});
 		}
