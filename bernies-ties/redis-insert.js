@@ -20,18 +20,18 @@ client.on('error', function(err){
 
 ties.on("ready", function(ties){
 
-	var i;
-	for(i = 0; i < ties.length; i++){
+	var i, count = 0;
+	for (i in ties) {
 		var tie = ties[i];
 
 		client.set(ties[i].get("name"), JSON.stringify(tie), function(){
 			console.log("item inserted");
 		});
+		++count;
 	}
 
 	client.save();
-	console.log("Records saved: " + ties.length);
+	console.log("Records saved: " + count);
 
 	client.end();
 })
-
