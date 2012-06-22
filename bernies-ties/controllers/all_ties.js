@@ -65,10 +65,9 @@ var getTies = function(keyword,callback){
 
 		for(i = 0; i < keys.length; i++){
 			client.get(keys[i], function(err, a){
-				var json = eval('(' + a + ')');
+				var json = JSON.parse(a);
 				var tie = new Tie.Tie(json);
 				ties.push(tie);
-
 				if(--remaining === 0){
 					callback(ties);
 
