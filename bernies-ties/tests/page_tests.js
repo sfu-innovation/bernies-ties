@@ -11,7 +11,7 @@ module.exports = {
 			console.log("STARTUP")
 			this.server = express.createServer();
 			this.server.use(server);
-			this.server.listen(config.port);
+			this.server.listen(config.server.port);
 			this.server.on('listening',callback);	
 		},
 
@@ -24,8 +24,8 @@ module.exports = {
 		"Homepage Test":function(test){
 			console.log("Testing");
 			var options = {
-				host:config.host,
-				port:config.port,
+				host:config.server.host,
+				port:config.server.port,
 				path:'/'
 			}
 
