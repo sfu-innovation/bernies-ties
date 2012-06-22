@@ -86,16 +86,7 @@ exports.searchTies = function(req, res){
 	else {keyword = req.params.k}
 	tieList.searchTies(req.params.k,function(ties){
 
-<<<<<<< HEAD
 
-			if (!second_element) {
-				second_element = 0;
-			}
-			
-			return parseFloat(second_element) - parseFloat(first_element) 		
-		});
-=======
->>>>>>> master
 
 
 		//TODO: large block code copied from above, I suggest move these into controller as private method. Router is not a place to do serious programing.
