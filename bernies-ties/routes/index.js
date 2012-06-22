@@ -56,7 +56,6 @@ exports.allTies = function(req, res){
 
 			res.render('all_ties', { title: 'All Bernie\'s Ties', ties: test });
 		}
-\
 		if (req.method === 'POST') {
 			var tie_id = req.body.id,
 				vote = req.body.vote,
