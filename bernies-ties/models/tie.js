@@ -21,6 +21,12 @@ exports.Tie = Backbone.Model.extend({
 			//need error handling to use throw new TypeError
 			return;
 		}
+		else if(rating < 1 || rating >5){
+			console.log("Rating must be between 1 - 5");
+			//throw new TypeError("Rating must be a number!");
+			//need error handling to use throw new TypeError
+			return;
+		}
 
 		this.set("ratings", this.get("ratings").concat(rating))
 
