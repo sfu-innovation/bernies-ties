@@ -105,7 +105,6 @@ exports.searchTies = function(req, res){
 			return parseFloat(second_element) - parseFloat(first_element)
 		});
 
-
 		res.render('all_ties', { title: 'Search Results' , ties:ties})
 
 	});

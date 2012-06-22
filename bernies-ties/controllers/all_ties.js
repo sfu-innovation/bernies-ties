@@ -2,7 +2,7 @@ var fs = require('fs');
 var config = JSON.parse(fs.readFileSync('config.json'));
 var client = require('redis').createClient(config.database.port, config.database.host);
 var Tie = require('../models/tie.js');
-var ties = [];
+
 var randomTie = [];
 
 client.select(config.database["db-num"], function(err,result){
@@ -30,6 +30,9 @@ exports.searchTies = function (keyword,callback){
 
 var getTies = function(keyword,callback){
 	var key;
+	// moved to local so the list won't get duplicated every refresh
+	var ties = [];
+
 	if(!keyword){
 		//if no keyword, we take all the keys
 		key = "*";
