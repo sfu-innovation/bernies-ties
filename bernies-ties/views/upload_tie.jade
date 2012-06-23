@@ -16,6 +16,8 @@ div#wrap
 		{
 		var x=document.forms["uploadform"]["name"].value;
 		var y=document.forms["uploadform"]["upload"].value;
+		var ext = y.substring(y.lastIndexOf('.') + 1);
+
 		if (x==null || x=="")
 			{
 			alert("Tie name must be filled out");
@@ -26,19 +28,28 @@ div#wrap
 			alert("Please select a picture to upload");
 			return false;
 			}
+		if(ext != "jpeg" || ext != "jpg" || ext != "png")
+		{
+			//alert("Please upload JPG or PNG only");
+			return true;
+			}
+			
+	
 		
 		}
+
 	div#upload_form
 		p
-			<form name="uploadform" action="/upload_suc" enctype="multipart/form-data" method="post" onsubmit="return validateForm()">
+			<form name="uploadform" action="/upload_success" enctype="multipart/form-data" method="post" onsubmit="return validateForm()">
 		p
 			span Tie Name: 
 				<input id="textfield" type="text" name="name">
 		p
 			<input type="file" name="upload" multiple="multiple">
 		p
-			<input id="submit" type="submit" value="Upload file" />
+			<input id="submit" type="submit" value="Submit Tie" />
 		</form>
+
 		
 div#wrap
 	div.link

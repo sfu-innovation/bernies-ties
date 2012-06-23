@@ -89,6 +89,7 @@ exports.searchTies = function(req, res){
 
 
 
+
 		//TODO: large block code copied from above, I suggest move these into controller as private method. Router is not a place to do serious programing.
 
 		var out = function(){
@@ -118,6 +119,7 @@ exports.searchTies = function(req, res){
 
 		out();
 
+
 	});
 
 
@@ -132,16 +134,18 @@ exports.uploadTie = function(req, res) {
 	}
 
 	
-exports.uploadSuc = function(req, res){
+exports.uploadSuccess = function(req, res){
 	console.log("upload received");
 	
 	var tie_name = req.body.name;
 	var tie_picture = req.files.upload.path
-	console.log(req.body.name);
+
 			
 	console.log("parsing done");
-	var filepath = ("./public/images/" + req.files.upload.name)
-    var tiefilepath = ("./images/" + req.files.upload.name)
+	var filepath = ("./public/images/" + req.files.upload.name);
+    var tiefilepath = ("./images/" + req.files.upload.name);    
+    var newTie = new Tie.Tie({name:tie_name, imageurl:tiefilepath});
+    
     fs.rename(req.files.upload.path, filepath , function(err) {
        if (err) {
        	   console.log("Error uploading file: "+err)
@@ -150,16 +154,16 @@ exports.uploadSuc = function(req, res){
 	       fs.rename(req.files.upload.path, filepath);
 	       return
 	   }
-	   console.log("YAY DONE");
-	   var newTie = new Tie.Tie({name:tie_name, imageurl:tiefilepath});
-	   client.set(newTie.get("name"),JSON.stringify(newTie), function(){
+	   
+	   
+	 client.set(newTie.get("name"),JSON.stringify(newTie), function(){
 	   	console.log("Tie created")
 	   });
 
 
 	});
 	 
-	res.render('upload_suc', {title: 'Tie Uploaded' });
+	res.render('upload_success', {title: 'Tie Uploaded', tie : newTie});
    	
 
 	
