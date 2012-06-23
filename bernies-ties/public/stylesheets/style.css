@@ -1,33 +1,13 @@
+/* CSS resets */
 * {
 	margin: 0;
 	padding: 0;
 }
 
+/* body, wrap, header, footer */
 body {
 	background-color: #EDEEEF;
 	font-family: Helvetica, Arial, sans-serif;
-}
-
-a {
-	color: #00B7FF;
-}
-
-div.link {
-	margin: 10px;
-}
-
-span#logo {
-	float: center;
-	margin-right:10px;
-	margin-left:10px;
-}
-
-div#portrait {
-	position: absolute;
-	right: 0;
-	bottom: auto;
-	margin-top: 10px;
-	z-index: -1;
 }
 
 #wrap {
@@ -54,6 +34,25 @@ div#portrait {
 	background-repeat:repeat-x;
 }
 
+a {
+	color: #00B7FF;
+}
+
+span#logo {
+	float: center;
+	margin-right:10px;
+	margin-left:10px;
+}
+
+div#portrait {
+	position: absolute;
+	right: 0;
+	bottom: auto;
+	margin-top: 10px;
+	z-index: -1;
+}
+
+
 li {
 	margin-left: 15px
 }
@@ -61,6 +60,7 @@ li {
 p, a, h2 {
 	margin: 10px 0px;
 }
+
 
 div#info {
 	background-color: rgba(175,105,140,0.5);
@@ -75,27 +75,39 @@ div#info {
 div#all_ties_info {
 	background-color: rgba(175,105,140,0.5);
 	margin: 15px 15px 15px 15px;
-	padding: 5px 15px 15px 15px;
+	padding: 15px 15px 15px 15px;
 	font-size: 15px;
 	text-decoration: none;
 	box-shadow: 0px 2px 4px 0px #ccc;
+}
+div#all_ties_info p{
+	display: inline;
+	color: white;
+	
+}
+
+div.link{
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 30px;
 }
 
 a#btn_all_ties {
 	color: white;
 	text-align: center;
-	display: block;
+	padding: 12px;
 	background-color: #ae6a8f;
 	width: 200px;
 	height: 35px;
-	margin: 0 auto;
-	padding-top: 10px;
+	margin: 10px;
 	font-size: 20px;
 	text-decoration: none;
 	box-shadow: 0px 2px 4px 0px #ccc;
 }
 
 a#btn_all_ties:hover {
+	background-color: white;
+	color: #ae6a8f;
 	box-shadow: 0px 1px 2px 0px #ccc;
 }
 
@@ -111,12 +123,22 @@ span.name, span.rating span.vote {
 }
 
 ol {
-	margin-top: 30px; 
 	list-style: none; 
 	margin-left: 0
 }
 
 ol li{
+	margin: 0px;
+	padding: 20px;
+	display: inline;
+}
+
+ol#ties{
+	margin-top: 30px; 
+	list-style: none; 
+	margin-left: 0
+}
+ol#ties li{
 	margin: 0px;
 	padding: 20px;
 	display: inline;
@@ -180,6 +202,7 @@ div#upload_form {
 	box-shadow: 0px 2px 4px 0px #ccc;
 }
 
+
 input#textfield {
 	border-width: 1px;
 	border-style: solid;
@@ -224,3 +247,16 @@ input#submitvote:hover {
 span#formitem {
 	margin: 5px;
 }
+
+
+form#search {
+	font-size: large;	
+	float: right;
+	display: inline;
+}
+
+form#search button{
+	margin-left: 10px;
+	
+}
+
